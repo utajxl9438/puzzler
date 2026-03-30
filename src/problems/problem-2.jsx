@@ -17,7 +17,7 @@ function PuzzlePiece({ piece }) {
   return ( <div style = {{ backgroundColor: piece.color}}
     className="inline-flex items-center justify-center w-20 h-20 rounded-lg text-white font-bold shadow"
     >
-    {piece.labbel}
+    {piece.label}
     </div>
     )
 }
