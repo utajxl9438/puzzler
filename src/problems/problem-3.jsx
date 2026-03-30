@@ -27,7 +27,13 @@ function PuzzlePiece({ piece }) {
 
 // TODO: Create Board component that receives { pieces }. Return a div with className "grid grid-cols-2 gap-3 w-fit". Inside, map over pieces and render <PuzzlePiece key={piece.id} piece={piece} /> for each.
 function Board({ pieces }) {
-  return null;
+  return ( 
+    <div className = "grid grid-cols-2 gap-3 w-fit">
+      {pieces.map((piece) => (
+        <PuzzlePiece key = {piece.id} piece={piece} />
+      ))}
+    </div>
+    );
 }
 
 function Problem3() {
@@ -40,8 +46,6 @@ function Problem3() {
       <p className="text-gray-700 mb-4">
         Pass <code>pieces</code> from Problem3 to <code>Board</code>; Board passes each <code>piece</code> to <code>PuzzlePiece</code>.
       </p>
-
-      {/* TODO: Render <Board pieces={pieces} /> so the parent passes data to the child. */}
       <Board pieces={pieces} />
     </section>
   );
