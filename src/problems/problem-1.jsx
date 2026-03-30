@@ -14,8 +14,11 @@ const COLORS = ["#f97316", "#22c55e", "#3b82f6", "#eab308"]; // orange, green, b
 function Problem1() {
   const pieceIds = [0, 1, 2, 3];
 
-  // TODO: Create `pieces` — an array of objects with id, label, and color. Use pieceIds.map((id) => ({ ... })) and COLORS[id].
-  const pieces = [];
+  const pieces = pieceIds.map((id) => ({
+    id,
+    label: `piece ${id + 1}`,
+    color: COLORS[id],
+  }))
 
   return (
     <section className="problem-view p-6">
@@ -24,9 +27,13 @@ function Problem1() {
         Build puzzle piece data with object literals and <code>.map()</code>. Then render a list of piece labels.
       </p>
 
-      {/* TODO: Render a <ul> with one <li> per piece. Use pieces.map((piece) => <li key={piece.id}>...</li>). Show piece.label; optionally use style={{ color: piece.color }}. */}
+      {}
       <ul className="list-disc list-inside space-y-1">
-        {/* ... */}
+        {pieces.map((piece) => (
+          <li key={piece.id} style={{ color: piece.color }}>
+            {piece.label}
+            </li>
+        ))}
       </ul>
     </section>
   );
