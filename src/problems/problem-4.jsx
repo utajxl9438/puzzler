@@ -40,10 +40,13 @@ function Problem4() {
   const [order, setOrder] = useState([0, 1, 2, 3]);
 
   // TODO: Implement handleShuffle so it calls setOrder(shuffleArray(order)).
-  const handleShuffle = () => {};
+  const handleShuffle = () => {
+    setOrder(shuffleArray(order))
+  };
 
   // TODO: Derive piecesToShow: order.map((id) => PIECES_DATA.find((p) => p.id === id)).
-  const piecesToShow = [];
+  const piecesToShow = order.map((id) => PIECES_DATA.find((p) => p.id === id
+  ));
 
   return (
     <section className="problem-view p-6">
@@ -62,7 +65,9 @@ function Problem4() {
 
       {/* TODO: Render a grid (grid grid-cols-2 gap-3 w-fit) that maps over piecesToShow and renders <PuzzlePiece key={piece.id} piece={piece} /> for each. */}
       <div className="grid grid-cols-2 gap-3 w-fit">
-        {/* ... */}
+        {piecesToShow.map((piece) => (
+          <PuzzlePiece key={piece.id} piece={piece} />
+        ))}
       </div>
     </section>
   );
