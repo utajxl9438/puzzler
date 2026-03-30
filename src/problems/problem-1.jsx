@@ -14,7 +14,8 @@ const COLORS = ["#f97316", "#22c55e", "#3b82f6", "#eab308"]; // orange, green, b
 function Problem1() {
   const pieceIds = [0, 1, 2, 3];
 
-  const pieces = pieceIds.map((id) => ({
+  // map pieces to an array
+  const pieces = pieceIds.map((id) => ({ 
     id,
     label: `piece ${id + 1}`,
     color: COLORS[id],
@@ -29,7 +30,7 @@ function Problem1() {
 
       {}
       <ul className="list-disc list-inside space-y-1">
-        {pieces.map((piece) => (
+        {pieces.map((piece) => ( // render array
           <li key={piece.id} style={{ color: piece.color }}>
             {piece.label}
             </li>
