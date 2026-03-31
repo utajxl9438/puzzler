@@ -106,7 +106,45 @@ function Problem6() {
   // 5. Otherwise, update slotIds using setSlotIds so that:
   //    - If the piece was off-grid, put it into that slot (and optionally clear any piece that was there).
   //    - If the piece was already on-grid, swap it with whatever is in the target slot.
-  const handleDropOnBoard = (e) => {};
+  const handleDropOnBoard = (e) => {
+    e.preventDefault();
+
+    const pieceId = Number(e.dataTransfer.getData("text/plain"));
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    let nearestIndex = -1;
+    let nearestDist = Infinity;
+
+    SLOT_CENTERS.forEach((center, i) => {
+      const dist = Math.hypot(center.left - x, center.top - y);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearestIndex = i;
+      }
+    });
+
+    if (nearestDist > MAGNET_RADIUS) return;
+
+    setSlotIds((prev) => {
+      const next = [...prev];
+      const fromIndex = next.indexOf(pieceId);
+      const occupant = next[nearestIndex];
+
+      if (fromIndex !== -1) {
+        next[fromIndex] = occupant;
+      } else if (occupant !== null) {
+        next[next.indexOf(occupant)] = null;
+      }
+
+      next[nearestIndex] = pieceId;
+      return next;
+    });
+  };
+
+
 
   return (
     <section className="problem-view p-6">
